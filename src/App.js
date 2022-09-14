@@ -1,5 +1,10 @@
 import "./App.css";
 import Login from "./components/login/Login.js";
+import Nav from "./components/navbar/Navbar.js";
+import Feed from "./components/feed/Feed.js";
+import Left from "./components/sidebarLeft/SidebarLeft.js";
+import Right from "./components/sidebarRight/SidebarRight.js";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -55,9 +60,21 @@ function App() {
 	// 	getIncoming();
 	// }, []);
 
+	const MainContent = (event) => {
+		return (
+			<>
+				<Nav />
+				<Left />
+				<Right />
+				<Feed />
+			</>
+		);
+	};
+
 	return (
 		<div className='App'>
-			<Login />
+			{/* <Login /> */}
+			<MainContent />
 		</div>
 	);
 }

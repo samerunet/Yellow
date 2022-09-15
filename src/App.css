@@ -10,7 +10,7 @@
 }
 
     .container-post {
-    
+    margin-top: 0;
     background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
     height: 100vh;
     display: flex;

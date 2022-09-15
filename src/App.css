@@ -4,13 +4,13 @@
 
 
 .backg-post {
-    border: 1px solid blue;
+    
     
     
 }
 
     .container-post {
-    border: 1px solid green;
+    
     background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
     height: 100vh;
     display: flex;
@@ -52,4 +52,12 @@
 .comment-btn, .like-btn {
     display: inline;
     float: right;
+}
+
+
+
+/* Right Side Bar  */
+.right-bar {
+    float: right;
+    
 }

@@ -3,7 +3,7 @@ import React from "react";
 export default function SidebarLeft() {
 	return (
 		<div>
-			<div class='w-80 h-full shadow-md bg-white px-1 absolute'>
+			<div class='w-80 h-full border-gray-200 shadow-md bg-white px-1 '>
 				<ul class='relative mt-5'>
 					<li class='relative'>
 						<a

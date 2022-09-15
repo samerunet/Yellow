@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SidebarRight() {
 	return(
-		<div className="w-64 max-h-full h-screen bg-white rounded-lg border border-gray-200 shadow-md dark:bg-white">
+		<div className="w-64 max-h-full h-screen bg-white rounded-lg border border-gray-200 shadow-md dark:bg-white right-bar">
 				<div className="flex justify-end px-4 pt-4">
 				</div>
 				<div className="flex flex-col items-center pb-10  md:mt-10">

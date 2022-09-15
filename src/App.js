@@ -51,8 +51,7 @@ function App() {
 			.then((response) => {
 				// console.log(userAccount)
 				console.log(response.data);
-				setIncoming(response.data.email);
-				setIncoming(response.data.id);
+				setIncoming(response.data);
 			});
 	};
 

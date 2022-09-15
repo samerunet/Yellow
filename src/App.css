@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.backg-post {
+    border: 1px solid blue;
+    background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
+    
+}
+
+    .container-post {
+    border: 1px solid green;
+    background-color: aliceblue;
+}
+.border-post {
+    border: 1px dashed gray; 
+}
+
+.border-user-post {
+    border: 1px solid yellow;
+
+}
+
+/* Top of post */
+.prof-pic, .user-name, .edit-icon {
+    display: inline;
+}
+.user-name {
+    margin-left: .2em;
+}
+.edit-icon {
+    float: right;
+}
+
+/* Bottom of post  */
+.comment-btn, .like-btn {
+    display: inline;
+    float: right;
+}

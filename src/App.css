@@ -5,21 +5,36 @@
 
 .backg-post {
     border: 1px solid blue;
-    background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
+    
     
 }
 
     .container-post {
     border: 1px solid green;
-    background-color: aliceblue;
+    background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+        
 }
 .border-post {
-    border: 1px dashed gray; 
+     
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65vw;
+    height: 80vh;
+    margin-top: 1%;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    
 }
 
 .border-user-post {
-    border: 1px solid yellow;
-
+    
+    background-color: aliceblue;
+    
 }
 
 /* Top of post */

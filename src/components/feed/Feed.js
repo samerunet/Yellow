@@ -1,10 +1,10 @@
 import React from "react";
 
 export default function Feed() {
-	return <div>
+	return (
 		                                
 
-<div className="py-16 bg-gray-50 backg-post">  
+ 
     <div className="container m-auto px-6 text-gray-600 md:px-12 xl:px-6 container-post rounded-xl ">
     
 
@@ -66,7 +66,7 @@ export default function Feed() {
           </div>
         </div>
     </div>
-</div>
+
 
  
 
@@ -74,6 +74,6 @@ export default function Feed() {
 
 
 
-	</div>;
+	)
 }
 

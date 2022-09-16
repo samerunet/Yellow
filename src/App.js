@@ -15,19 +15,38 @@ import axios from "axios";
 // any user can comment on any post
 
 function App() {
-	const [username, setUsername] = useState(" ");
-	const [password, setPassword] = useState(" ");
+	// const [username, setUsername] = useState(" ");
+	// const [password, setPassword] = useState(" ");
 	const [users, setUsers] = useState([]);
+	const [post, setPost] = useState([]);
+	const [comment, setComment] = useState([]);
 	const API = "https://secure-forest-62515.herokuapp.com/api";
 
+	// FETCH - USERS
 	const getUsers = () => {
 		axios.get(`${API}/users`).then((response) =>
 			// console.log(response.data),
 			setUsers(response.data)
 		);
 	};
+	// FETCH - POSTS
+	const getPosts = () => {
+		axios.get(`${API}/posts`).then((response) =>
+			setPost(response.data)
+		)
+	}
+	// FETCH - COMMENTS
+	const getComments = () => {
+		axios.get(`${API}/comments`).then((response) =>
+			setComment(response.data)
+		)
+	}
+
+
 	useEffect(() => {
 		getUsers();
+		getPosts();
+		getComments();
 	}, []);
 
 	const handleUsername = (event) => {

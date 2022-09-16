@@ -1,3 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.backg-post {
+    
+    
+    
+}
+
+    .container-post {
+    margin-top: 0;
+    background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+        
+}
+.border-post {
+     
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65vw;
+    height: 80vh;
+    margin-top: 1%;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    
+}
+
+.border-user-post {
+    
+    background-color: aliceblue;
+    
+}
+
+/* Top of post */
+.prof-pic, .user-name, .edit-icon {
+    display: inline;
+}
+.user-name {
+    margin-left: .2em;
+}
+.edit-icon {
+    float: right;
+}
+
+/* Bottom of post  */
+.comment-btn, .like-btn {
+    display: inline;
+    float: right;
+}
+
+
+
+/* Right Side Bar  */
+.right-bar {
+    float: right;
+    
+}

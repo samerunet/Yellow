@@ -1,6 +1,13 @@
 import React from "react";
 
-export default function Login() {
+export default function Login(
+	{ handleLogin },
+	{ handleUsername },
+	{ handlePassword }
+) {
+	// will validate the user and get user id
+	// map through the users and get the specific user data
+	//
 	return (
 		<div>
 			<section className='bg-yellow-300  relative flex flex-wrap lg:h-screen lg:items-center'>
@@ -18,15 +25,17 @@ export default function Login() {
 
 					<form action='' className='max-w-md mx-auto mt-8 mb-0 space-y-4'>
 						<div>
-							<label for='email' className='sr-only'>
+							<label for='text' className='sr-only'>
 								Email
 							</label>
 
 							<div className='relative'>
 								<input
-									type='email'
+									name='username'
+									type='text'
 									className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
-									placeholder='Enter email'
+									placeholder='Enter username'
+									onChange={handleUsername}
 								/>
 
 								<span className='absolute inset-y-0 inline-flex items-center right-4'>
@@ -54,9 +63,11 @@ export default function Login() {
 							</label>
 							<div className='relative'>
 								<input
-									type='password'
+									name='password'
+									type='text'
 									className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
 									placeholder='Enter password'
+									onChange={handlePassword}
 								/>
 
 								<span className='absolute inset-y-0 inline-flex items-center right-4'>
@@ -94,6 +105,7 @@ export default function Login() {
 
 							<button
 								type='submit'
+								onClick={handleLogin}
 								className='bg-lime-500 inline-block px-5 py-3 ml-3 text-sm font-lg  rounded-lg'
 							>
 								Sign in

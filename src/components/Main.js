@@ -3,14 +3,20 @@ import Nav from "../components/navbar/Navbar.js";
 import Feed from "../components/feed/Feed.js";
 import Left from "../components/sidebarLeft/SidebarLeft.js";
 import Right from "../components/sidebarRight/SidebarRight.js";
+import { useState, useEffect } from "react";
 
 export default function Main() {
+	const [modeFunction, setModeFunction] = useState(true);
+
+	const modeToggle = (post) => {
+		modeFunction ? setModeFunction(false) : setModeFunction(true);
+	};
 	return (
-		<>
+		<div className={` ${modeFunction ? "bg-yellow-300" : "bg-black"}`}>
 			<div class="flex h-screen bg-[url('')] ">
 				<div class='flex-1 flex flex-col overflow-hidden'>
 					<header class='nav'>
-						<Nav />
+						<Nav modeToggle={modeToggle} />
 					</header>
 					<div class='flex h-full'>
 						<nav class='flex w-72 h-full '>
@@ -18,12 +24,8 @@ export default function Main() {
 								<Left />
 							</div>
 						</nav>
-						<main class='flex flex-col w-full bg-white overflow-x-hidden overflow-y-hidden mb-14'>
-							<div class='flex w-full mx-auto px-6 py-8'>
-								<div class='flex flex-col w-full h-full text-gray-900 text-xl '>
-									<Feed />
-								</div>
-							</div>
+						<main class='flex flex-col w-full bg-white overflow-x-hidden overflow-y-hidden mb-14 rounded-xl'>
+							<Feed />
 						</main>
 						<nav class='flex w-72 h-full '>
 							<div class='w-full flex mx-auto px-6 py-8'>
@@ -35,6 +37,6 @@ export default function Main() {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }

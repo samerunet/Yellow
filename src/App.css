@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.bg-main {
+    background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
+}
+.bg-dark-main {
+    background: linear-gradient(90deg, rgba(4,4,4,1) 16%, rgba(113,112,112,1) 33%, rgba(237,237,237,1) 49%, rgba(0,0,0,1) 88%);
+}
 
     .container-post {
     margin-top: 0;
@@ -13,6 +18,7 @@
     justify-content: center;
         
 }
+
 .border-post {
      
     display: flex;

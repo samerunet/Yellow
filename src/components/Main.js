@@ -12,7 +12,7 @@ export default function Main() {
 		modeFunction ? setModeFunction(false) : setModeFunction(true);
 	};
 	return (
-		<div className={` ${modeFunction ? "bg-yellow-300" : "bg-black"}`}>
+		<div className={` ${modeFunction ? "bg-main" : "bg-dark-main"}`}>
 			<div class="flex h-screen bg-[url('')] ">
 				<div class='flex-1 flex flex-col overflow-hidden'>
 					<header class='nav'>

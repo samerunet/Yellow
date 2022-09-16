@@ -1,13 +1,21 @@
 import React from "react";
+import { useState } from "react";
 
-export default function Login(
-	{ handleLogin },
-	{ handleUsername },
-	{ handlePassword }
-) {
+export default function Login({ handleLogin }) {
 	// will validate the user and get user id
 	// map through the users and get the specific user data
 	//
+	const [username, setUsername] = useState(" ");
+	const [password, setPassword] = useState(" ");
+
+	const handleUsername = (event) => {
+		setUsername(event.target.value);
+	};
+
+	const handlePassword = (event) => {
+		setPassword(event.target.value);
+	};
+
 	return (
 		<div>
 			<section className='bg-yellow-300  relative flex flex-wrap lg:h-screen lg:items-center'>
@@ -22,8 +30,13 @@ export default function Login(
 							nulla eaque error neque ipsa culpa autem, at itaque nostrum!
 						</p>
 					</div>
-
-					<form action='' className='max-w-md mx-auto mt-8 mb-0 space-y-4'>
+					<form
+						onSubmit={(event) => {
+							event.preventDefault();
+							handleLogin(username, password);
+						}}
+						className='max-w-md mx-auto mt-8 mb-0 space-y-4'
+					>
 						<div>
 							<label for='text' className='sr-only'>
 								Email
@@ -64,7 +77,7 @@ export default function Login(
 							<div className='relative'>
 								<input
 									name='password'
-									type='text'
+									type='password'
 									className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
 									placeholder='Enter password'
 									onChange={handlePassword}
@@ -105,7 +118,6 @@ export default function Login(
 
 							<button
 								type='submit'
-								onClick={handleLogin}
 								className='bg-lime-500 inline-block px-5 py-3 ml-3 text-sm font-lg  rounded-lg'
 							>
 								Sign in

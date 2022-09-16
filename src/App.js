@@ -1,9 +1,6 @@
 import "./App.css";
 import Login from "./components/login/Login.js";
-import Nav from "./components/navbar/Navbar.js";
-import Feed from "./components/feed/Feed.js";
-import Left from "./components/sidebarLeft/SidebarLeft.js";
-import Right from "./components/sidebarRight/SidebarRight.js";
+import Main from "./components/Main.js";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -15,9 +12,8 @@ import axios from "axios";
 // any user can comment on any post
 
 function App() {
-	// const [username, setUsername] = useState(" ");
-	// const [password, setPassword] = useState(" ");
 	const [users, setUsers] = useState([]);
+	const [user, setUser] = useState([]);
 	const [post, setPost] = useState([]);
 	const [comment, setComment] = useState([]);
 	const API = "https://secure-forest-62515.herokuapp.com/api";
@@ -31,34 +27,34 @@ function App() {
 	};
 	// FETCH - POSTS
 	const getPosts = () => {
-		axios.get(`${API}/posts`).then((response) =>
-			setPost(response.data)
-		)
-	}
+		axios.get(`${API}/posts`).then((response) => setPost(response.data));
+	};
 	// FETCH - COMMENTS
 	const getComments = () => {
-		axios.get(`${API}/comments`).then((response) =>
-			setComment(response.data)
-		)
-	}
-
-
-	useEffect(() => {
-		getUsers();
-		getPosts();
-		getComments();
-	}, []);
-
-	const handleUsername = (event) => {
-		setUsername(event.target.value);
+		axios.get(`${API}/comments`).then((response) => setComment(response.data));
 	};
 
-	const handlePassword = (event) => {
-		setPassword(event.target.value);
+	const [pageFunction, setPageFunction] = useState(true);
+
+	const pageToggle = (post) => {
+		pageFunction ? setPageFunction(false) : setPageFunction(true);
 	};
 
-	const handleLogin = (event) => {
-		event.preventDefault();
+	// useEffect(() => {
+	// 	getUsers();
+	// 	getPosts();
+	// 	getComments();
+	// }, []);
+
+	// const handleUsername = (event) => {
+	// 	setUsername(event.target.value);
+	// };
+
+	// const handlePassword = (event) => {
+	// 	setPassword(event.target.value);
+	// };
+
+	const handleLogin = (username, password) => {
 		axios
 			.put(`${API}/users/login`, {
 				username: username,
@@ -70,119 +66,33 @@ function App() {
 				}
 			})
 			.then((response) => {
-				// console.log(userAccount)
+				setUser(response.data);
 				console.log(response.data);
-			});
-		// .then((response) => { }))
-	};
-
-	const handleCreateuser = (event) => {
-		event.preventDefault();
-		axios
-			.put(`${API}/users/`, {
-				username: username,
-				password1: password,
-				password2: password,
-			})
-			.then((response) => {
-				// console.log(userAccount)
-				console.log(response);
+				if (Object.keys(response.data).length === 0) {
+					console.log("something went wrong");
+				} else {
+					pageToggle();
+				}
 			});
 	};
-	// useEffect(() => {
-	// 	getIncoming();
-	// }, []);
 
-	const MainContent = (event) => {
-		return (
-			<>
-				<div class="flex h-screen bg-[url('')] ">
-					<div class='flex-1 flex flex-col overflow-hidden'>
-						<header class='nav'>
-							<Nav />
-						</header>
-						<div class='flex h-full'>
-							<nav class='flex w-72 h-full '>
-								<div class='w-full flex mx-auto px-6 py-8'>
-									<Left />
-								</div>
-							</nav>
-							<main class='flex flex-col w-full bg-white overflow-x-hidden overflow-y-hidden mb-14'>
-								<div class='flex w-full mx-auto px-6 py-8'>
-									<div class='flex flex-col w-full h-full text-gray-900 text-xl '>
-										<Feed />
-									</div>
-								</div>
-							</main>
-							<nav class='flex w-72 h-full '>
-								<div class='w-full flex mx-auto px-6 py-8'>
-									<div class='w-full h-full flex items-center justify-center text-gray-900 text-xl '>
-										<Right />
-									</div>
-								</div>
-							</nav>
-						</div>
-					</div>
-				</div>
-			</>
-		);
-	};
+	// const handleCreateuser = (event) => {
+	// 	event.preventDefault();
+	// 	axios
+	// 		.put(`${API}/users/`, {
+	// 			username: username,
+	// 			password: password,
+	//
+	// 		})
+	// 		.then((response) => {
+
+	// 			console.log(response);
+	// 		});
+	// };
 
 	return (
 		<div className='App'>
-			{/* <Login
-				handleLogin={handleLogin}
-				handleUsername={handleUsername}
-				handlePassword={handlePassword}
-			/>
-			<MainContent /> */}
-			<form onSubmit={handleLogin}>
-				<input
-					className='bg-yellow-300'
-					name='username'
-					type='text'
-					className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
-					placeholder='Enter username'
-					onChange={handleUsername}
-				/>
-				<input
-					name='password'
-					type='text'
-					className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
-					placeholder='Enter password'
-					onChange={handlePassword}
-				/>
-				<button className='text-lemon-300' type='submit'>
-					submit to log in{" "}
-				</button>
-			</form>
-			{/* <form onSubmit={handleCreateuser}>
-				<input
-					className='bg-yellow-300'
-					name='username'
-					type='text'
-					className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
-					placeholder='Enter username'
-					onChange={handleUsername}
-				/>
-				<input
-					name='password'
-					type='text'
-					className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
-					placeholder='Enter password'
-					onChange={handlePassword}
-				/>
-				<input
-					name='password'
-					type='text'
-					className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
-					placeholder='Enter password'
-					onChange={handlePassword}
-				/>
-				<button className='text-lemon-300' type='submit'>
-					submit to log in{" "}
-				</button>
-			</form> */}
+			{pageFunction ? <Login handleLogin={handleLogin} /> : <Main />}
 		</div>
 	);
 }

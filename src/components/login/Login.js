@@ -1,11 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import Newuser from "./Signup.js";
-
-export default function Login({ handleLogin }) {
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+export default function Login({ setUser,setPermission }) {
 	// will validate the user and get user id
 	// map through the users and get the specific user data
 	//
+
+	const navigate = useNavigate();
+	const API = "https://secure-forest-62515.herokuapp.com/api";
 	const [username, setUsername] = useState(" ");
 	const [password, setPassword] = useState(" ");
 	const [signUp, setShowSignUp] = useState(false);
@@ -20,6 +24,30 @@ export default function Login({ handleLogin }) {
 
 	const handlePassword = (event) => {
 		setPassword(event.target.value);
+	};
+
+	const handleLogin = (username, password) => {
+		axios
+			.put(`${API}/users/login`, {
+				username: username,
+				password: password,
+			})
+			.catch((error) => {
+				if (error) {
+					alert("Email or password does not match records");
+				}
+			})
+			.then((response) => {
+                setUser(response.data);
+				console.log(response.data);
+				if (Object.keys(response.data).length === 0) {
+					console.log("something went wrong");
+                } else {
+                    setPermission(true)
+					navigate("/");
+					// pageToggle();
+				}
+			});
 	};
 
 	return (

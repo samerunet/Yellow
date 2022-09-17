@@ -1,12 +1,37 @@
 import React from "react";
-import Nav from "../components/navbar/Navbar.js";
+
 import Feed from "../components/feed/Feed.js";
 import Left from "../components/sidebarLeft/SidebarLeft.js";
 import Right from "../components/sidebarRight/SidebarRight.js";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function Main({ users }, { user }) {
-	const [modeFunction, setModeFunction] = useState(true);
+export default function Main({ setPost,setComment,setUsers,users, post, user }) {
+    const [modeFunction, setModeFunction] = useState(true);
+    
+    const API = "https://secure-forest-62515.herokuapp.com/api";
+
+	// FETCH - USERS
+	const getUsers = () => {
+		axios.get(`${API}/users`).then((response) =>
+			// console.log(response.data),
+			setUsers(response.data)
+		);
+	};
+	// FETCH - POSTS
+	const getPosts = () => {
+		axios.get(`${API}/post`).then((response) => setPost(response.data));
+	};
+	// FETCH - COMMENTS
+	const getComments = () => {
+		axios.get(`${API}/comments`).then((response) => setComment(response.data));
+    };
+    
+    useEffect(() => {
+		getUsers();
+		getPosts();
+		getComments();
+	}, []);
 
 	const modeToggle = () => {
 		modeFunction ? setModeFunction(false) : setModeFunction(true);
@@ -17,7 +42,7 @@ export default function Main({ users }, { user }) {
 			<div class="flex h-screen bg-[url('')] ">
 				<div class='flex-1 flex flex-col overflow-hidden'>
 					<header class='nav'>
-						<Nav modeToggle={modeToggle} />
+						
 					</header>
 					<div class='flex h-full'>
 						<nav class='flex w-72 h-full '>

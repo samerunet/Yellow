@@ -5,12 +5,13 @@ import Left from "../components/sidebarLeft/SidebarLeft.js";
 import Right from "../components/sidebarRight/SidebarRight.js";
 import { useState, useEffect } from "react";
 
-export default function Main() {
+export default function Main({ users }, { user }) {
 	const [modeFunction, setModeFunction] = useState(true);
 
-	const modeToggle = (post) => {
+	const modeToggle = () => {
 		modeFunction ? setModeFunction(false) : setModeFunction(true);
 	};
+
 	return (
 		<div className={` ${modeFunction ? "bg-main" : "bg-dark-main"}`}>
 			<div class="flex h-screen bg-[url('')] ">
@@ -21,7 +22,7 @@ export default function Main() {
 					<div class='flex h-full'>
 						<nav class='flex w-72 h-full '>
 							<div class='w-full flex mx-auto px-6 py-8'>
-								<Left />
+								<Left users={users} />
 							</div>
 						</nav>
 						<main class='flex flex-col w-full bg-white overflow-x-hidden overflow-y-hidden mb-14 rounded-xl'>
@@ -30,7 +31,7 @@ export default function Main() {
 						<nav class='flex w-72 h-full '>
 							<div class='w-full flex mx-auto px-6 py-8'>
 								<div class='w-full h-full flex items-center justify-center text-gray-900 text-xl '>
-									<Right />
+									<Right user={user} />
 								</div>
 							</div>
 						</nav>

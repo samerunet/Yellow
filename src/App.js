@@ -2,7 +2,6 @@ import "./App.css";
 import Login from "./components/login/Login.js";
 import Main from "./components/Main.js";
 
-
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -28,7 +27,7 @@ function App() {
 	};
 	// FETCH - POSTS
 	const getPosts = () => {
-		axios.get(`${API}/posts`).then((response) => setPost(response.data));
+		axios.get(`${API}/post`).then((response) => setPost(response.data));
 	};
 	// FETCH - COMMENTS
 	const getComments = () => {
@@ -37,19 +36,11 @@ function App() {
 
 	const [pageFunction, setPageFunction] = useState(true);
 
-	const pageToggle = (post) => {
+	const pageToggle = () => {
 		pageFunction ? setPageFunction(false) : setPageFunction(true);
 	};
 
 
-
-	// const handleUsername = (event) => {
-	// 	setUsername(event.target.value);
-	// };
-
-	// const handlePassword = (event) => {
-	// 	setPassword(event.target.value);
-	// };
 
 	const handleLogin = (username, password) => {
 		axios
@@ -73,12 +64,11 @@ function App() {
 			});
 	};
 
-
-const handleCreateNewUser = (addUser) => {
-	axios.post(`${API}/users`, addUser).then((response) => {
-		setUsers([...users, response.data])
-	})
-}
+	// const handleCreateNewUser = (addUser) => {
+	// 	axios.post(`${API}/users`, addUser).then((response) => {
+	// 		setUsers([...users, response.data]);
+	// 	});
+	// };
 
 	// const handleCreateuser = (event) => {
 	// 	event.preventDefault();
@@ -100,11 +90,13 @@ const handleCreateNewUser = (addUser) => {
 		getComments();
 	}, []);
 
-
 	return (
 		<div className='App'>
-			{pageFunction ? <Login handleLogin={handleLogin} /> : <Main />}
-			
+			{pageFunction ? (
+				<Login handleLogin={handleLogin} />
+			) : (
+				<Main  users={users} user={user} />
+			)}
 		</div>
 	);
 }

@@ -8,12 +8,11 @@ export default function Login({ handleLogin }) {
 	//
 	const [username, setUsername] = useState(" ");
 	const [password, setPassword] = useState(" ");
-	const [signUp, setShowSignUp] = useState(false)
-
+	const [signUp, setShowSignUp] = useState(false);
 
 	const showSignUp = () => {
-		setShowSignUp(true)
-	}
+		setShowSignUp(true);
+	};
 
 	const handleUsername = (event) => {
 		setUsername(event.target.value);
@@ -45,7 +44,7 @@ export default function Login({ handleLogin }) {
 						className='max-w-md mx-auto mt-8 mb-0 space-y-4'
 					>
 						<div>
-							<label for='text' className='sr-only'>
+							<label htmlFor='text' className='sr-only'>
 								Email
 							</label>
 
@@ -67,9 +66,9 @@ export default function Login({ handleLogin }) {
 										stroke='currentColor'
 									>
 										<path
-											stroke-linecap='round'
-											stroke-linejoin='round'
-											stroke-width='2'
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
 											d='M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207'
 										/>
 									</svg>
@@ -78,7 +77,7 @@ export default function Login({ handleLogin }) {
 						</div>
 
 						<div>
-							<label for='password' className='sr-only'>
+							<label htmlFor='password' className='sr-only'>
 								Password
 							</label>
 							<div className='relative'>
@@ -99,15 +98,15 @@ export default function Login({ handleLogin }) {
 										stroke='currentColor'
 									>
 										<path
-											stroke-linecap='round'
-											stroke-linejoin='round'
-											stroke-width='2'
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
 											d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'
 										/>
 										<path
-											stroke-linecap='round'
-											stroke-linejoin='round'
-											stroke-width='2'
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
 											d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z'
 										/>
 									</svg>
@@ -116,7 +115,6 @@ export default function Login({ handleLogin }) {
 						</div>
 
 						<div className='flex items-center justify-between'>
-
 							<button
 								type='submit'
 								className='bg-lime-500 inline-block px-5 py-3 ml-3 text-sm font-lg  rounded-lg'
@@ -126,13 +124,10 @@ export default function Login({ handleLogin }) {
 						</div>
 					</form>
 					<div>
-					
-								
-								<button className='underline' onClick={showSignUp}>
-									Sign up
-									{signUp ? <Newuser /> : null}
-								</button>
-						
+						<button className='underline' onClick={showSignUp}>
+							Sign up
+							{signUp ? <Newuser /> : null}
+						</button>
 					</div>
 				</div>
 
@@ -144,7 +139,6 @@ export default function Login({ handleLogin }) {
 					/>
 				</div>
 			</section>
-			
 		</div>
 	);
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Newuser from "./Signup.js";
 
 export default function Login({ handleLogin }) {
 	// will validate the user and get user id
@@ -7,6 +8,12 @@ export default function Login({ handleLogin }) {
 	//
 	const [username, setUsername] = useState(" ");
 	const [password, setPassword] = useState(" ");
+	const [signUp, setShowSignUp] = useState(false)
+
+
+	const showSignUp = () => {
+		setShowSignUp(true)
+	}
 
 	const handleUsername = (event) => {
 		setUsername(event.target.value);
@@ -109,12 +116,6 @@ export default function Login({ handleLogin }) {
 						</div>
 
 						<div className='flex items-center justify-between'>
-							<p className='text-sm text-gray-500'>
-								No account?
-								<a className='underline' href=''>
-									Sign up
-								</a>
-							</p>
 
 							<button
 								type='submit'
@@ -124,6 +125,15 @@ export default function Login({ handleLogin }) {
 							</button>
 						</div>
 					</form>
+					<div>
+					
+								
+								<button className='underline' onClick={showSignUp}>
+									Sign up
+									{signUp ? <Newuser /> : null}
+								</button>
+						
+					</div>
 				</div>
 
 				<div className='relative w-full h-64 sm:h-96 lg:w-1/2 lg:h-full'>
@@ -134,6 +144,7 @@ export default function Login({ handleLogin }) {
 					/>
 				</div>
 			</section>
+			
 		</div>
 	);
 }

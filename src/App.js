@@ -2,6 +2,7 @@ import "./App.css";
 import Login from "./components/login/Login.js";
 import Main from "./components/Main.js";
 
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -40,11 +41,7 @@ function App() {
 		pageFunction ? setPageFunction(false) : setPageFunction(true);
 	};
 
-	// useEffect(() => {
-	// 	getUsers();
-	// 	getPosts();
-	// 	getComments();
-	// }, []);
+
 
 	// const handleUsername = (event) => {
 	// 	setUsername(event.target.value);
@@ -76,6 +73,13 @@ function App() {
 			});
 	};
 
+
+const handleCreateNewUser = (addUser) => {
+	axios.post(`${API}/users`, addUser).then((response) => {
+		setUsers([...users, response.data])
+	})
+}
+
 	// const handleCreateuser = (event) => {
 	// 	event.preventDefault();
 	// 	axios
@@ -90,9 +94,17 @@ function App() {
 	// 		});
 	// };
 
+	useEffect(() => {
+		getUsers();
+		getPosts();
+		getComments();
+	}, []);
+
+
 	return (
 		<div className='App'>
 			{pageFunction ? <Login handleLogin={handleLogin} /> : <Main />}
+			
 		</div>
 	);
 }

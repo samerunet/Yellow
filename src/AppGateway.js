@@ -4,6 +4,9 @@ import Login from "./components/login/Login.js";
 import { useState } from "react";
 import Main from "./components/Main.js";
 import Nav from "./components/navbar/Navbar.js";
+import Left from "./components/sidebarLeft/SidebarLeft.js";
+import Right from "./components/sidebarRight/SidebarRight.js";
+import New from "./components/sidebarRight/Posticon";
 
 const ProtectedRoute = ({ permission, children }) => {
 	if (!permission) {
@@ -43,6 +46,13 @@ export default function AppGateway() {
 						</ProtectedRoute>
 					}
 				/>
+
+				<Route path='/addpost' element={<New />}/>
+					
+					
+					
+
+				
 
 				<Route path='/contact' element={<div>contact page</div>} />
 			</Routes>

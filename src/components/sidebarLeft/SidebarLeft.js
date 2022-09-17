@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SidebarLeft() {
+export default function SidebarLeft({ users }) {
 	return (
 		<div>
 			<div className='w-64 max-h-full h-screen bg-white rounded-lg border border-gray-200 shadow-md dark:bg-white right-bar'>
@@ -31,27 +31,26 @@ export default function SidebarLeft() {
 								</svg>
 							</a>
 						</li>
-						<li class='relative'>
-							<a
-								class='flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out'
-								href='#!'
-								data-mdb-ripple='true'
-								data-mdb-ripple-color='dark'
-							>
-								<img
-									src='https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg'
-									alt='avatar image'
-									class='inline-flex items-center justify-center w-12 h-12 mr-2 text-white transition-all duration-200 ease-in-out text-sm rounded-xl'
-								/>
-								<p className='bg-yellow-300 p-7 text-xs leading-tight uppercase rounded shadow-md '>
-									Señor Potato
-								</p>
-								<button
-									type='button'
-									class='ml-3 inline-block px-1 py-1 bg-green-500 text-white font-small text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out'
-								></button>{" "}
-							</a>
-						</li>
+						{users.map((person) => {
+							return (
+								<li class='relative' key={person.id}>
+									<a
+										class='flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out'
+										href='#!'
+										data-mdb-ripple='true'
+										data-mdb-ripple-color='dark'
+									>
+										<p className='bg-yellow-300 p-7 text-xs leading-tight uppercase rounded shadow-md '>
+											{person.username}
+										</p>
+										<button
+											type='button'
+											class='ml-3 inline-block px-1 py-1 bg-green-500 text-white font-small text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out'
+										></button>{" "}
+									</a>
+								</li>
+							);
+						})}
 					</ul>
 				</div>
 			</div>

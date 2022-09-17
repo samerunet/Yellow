@@ -50,7 +50,7 @@ export default function Main({ setPost,setComment,setUsers,users, post, user }) 
 								<Left users={users} />
 							</div>
 						</nav>
-						<main class='flex flex-col w-full bg-white overflow-x-hidden overflow-y-hidden mb-14 rounded-xl'>
+						<main class=''>
 							<Feed />
 						</main>
 						<nav class='flex w-72 h-full '>

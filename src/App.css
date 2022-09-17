@@ -4,18 +4,20 @@
 
 .bg-main {
     background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
+
 }
 .bg-dark-main {
-    background: linear-gradient(90deg, rgba(4,4,4,1) 16%, rgba(113,112,112,1) 33%, rgba(237,237,237,1) 49%, rgba(0,0,0,1) 88%);
+    background: #282b38
 }
 
     .container-post {
-    margin-top: 0;
-    background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
+    margin-top: 2em;
+
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+
         
 }
 
@@ -25,16 +27,20 @@
     align-items: center;
     justify-content: center;
     width: 65vw;
-    height: 80vh;
+    height: 100vh;
     margin-top: 1%;
     flex-wrap: wrap;
     overflow-x: auto;
+
     
 }
 
 .border-user-post {
     
     background-color: aliceblue;
+    border-radius: 2%;
+    width: 80vw;
+    height:65vh
     
 }
 
@@ -61,4 +67,23 @@
 .right-bar {
     float: right;
     
+}
+
+/* .smallicon{
+    border-radius: 50%;
+    background-color: yellow;
+    background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
+} */
+
+.logo{
+    margin-left: 0;
+    margin-right: 5em;
+}
+
+navcontainer{
+    width: 100vw;
+}
+
+.thenav{
+    background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
 }

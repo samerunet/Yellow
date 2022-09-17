@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import Posticon from "./Posticon";
+
+
+
 
 export default function SidebarRight({ user }) {
 	return (

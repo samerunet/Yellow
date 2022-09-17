@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import Posticon from "./Posticon";
+
+
+
 
 export default function SidebarRight() {
+
+const [showicon, setShowIcon] = useState(false); 
+
+
+const toggleIcon = () => {
+
+	setShowIcon(true);
+
+}
+
+
+
 	return(
 		<div className="w-64 max-h-full h-screen bg-white rounded-lg border border-gray-200 shadow-md dark:bg-white right-bar">
 				<div className="flex justify-end px-4 pt-4">
@@ -34,7 +50,8 @@ export default function SidebarRight() {
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-yellow-300">
 								<path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
 							</svg>
-							<h5  className="dark:hover:text-lime-700">Post</h5>
+							<h5 onClick={toggleIcon} className="dark:hover:text-lime-700">Post</h5>
+							{showicon ? <Posticon setShowIcon={setShowIcon}/> : null}
 						</div>
 						<div className="flex mt-4 space-x-3 md:mt-6">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-yellow-300">
@@ -44,8 +61,9 @@ export default function SidebarRight() {
 						</div>
 						<div className="flex mt-4 space-x-3 md:mt-12">
 							<div className="inline-block">
-							<h5  className="dark:hover:text-lime-700">Settings and Privacy</h5>
+							<h5 className="dark:hover:text-lime-700">Settings and Privacy</h5>
 							</div>
+						
 						</div>
 						<div className="flex mt-4 space-x-3 md:mt-6">
 							<div className="inline-block">

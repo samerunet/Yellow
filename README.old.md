@@ -5,7 +5,7 @@
 Our Yellow themed social media app is separate from any other because it is centered around the sensation of feeling happy and spreading that happiness througout the platform. The purpose of this social app is to share happiness. Instagram shares the bests parts - Yello shares the happiness which is more real than any other post. 
 
 
-
+# Logic behind code
 Login 
 
 imports - react, useState, Link - keeps you on the same page , useNavigate - function that has a link and we use it to link to the home page 

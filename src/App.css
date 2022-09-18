@@ -102,3 +102,9 @@ navcontainer {
 	width: 220px;
 	height: 250px;
 }
+
+.logoimg {
+	height: 50px;
+	width: 50px;
+	margin: 20px;
+}

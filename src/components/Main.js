@@ -1,9 +1,8 @@
 import React from "react";
-
 import Feed from "../components/feed/Feed.js";
 import Left from "../components/sidebarLeft/SidebarLeft.js";
 import Right from "../components/sidebarRight/SidebarRight.js";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 export default function Main({
@@ -13,17 +12,11 @@ export default function Main({
 	users,
 	post,
 	user,
+	API,
 }) {
-	const [modeFunction, setModeFunction] = useState(true);
-
-	const API = "https://secure-forest-62515.herokuapp.com/api";
-
 	// FETCH - USERS
 	const getUsers = () => {
-		axios.get(`${API}/users`).then((response) =>
-			// console.log(response.data),
-			setUsers(response.data)
-		);
+		axios.get(`${API}/users`).then((response) => setUsers(response.data));
 	};
 	// FETCH - POSTS
 	const getPosts = () => {
@@ -40,31 +33,16 @@ export default function Main({
 		getComments();
 	}, []);
 
-	const modeToggle = () => {
-		modeFunction ? setModeFunction(false) : setModeFunction(true);
-	};
-
 	return (
-		<div className={` ${modeFunction ? "bg-main" : "bg-dark-main"}`}>
+		<div className='bg-main'>
 			<div class="flex h-screen bg-[url('')] ">
 				<div class='flex-1 flex flex-col overflow-hidden'>
-					<header class='nav'></header>
 					<div class='flex h-full'>
-						<nav class='flex w-72 h-full '>
-							<div class='w-full flex mx-auto px-6 py-8'>
-								<Left users={users} />
-							</div>
-						</nav>
+						<Left users={users} />
 						<main class=''>
 							<Feed post={post} user={user} />
 						</main>
-						<nav class='flex w-72 h-full '>
-							<div class='w-full flex mx-auto px-6 py-8'>
-								<div class='w-full h-full flex items-center justify-center text-gray-900 text-xl '>
-									<Right user={user} />
-								</div>
-							</div>
-						</nav>
+						<Right user={user} />
 					</div>
 				</div>
 			</div>

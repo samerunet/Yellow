@@ -1,13 +1,15 @@
 import React from "react";
 
 export default function Feed({ post, user }) {
-	// eslint-disable-next-line no-lone-blocks
+	console.log(user);
+
+	// map through users and postId and set the owner 
+	
 
 	return (
 		<div className='container m-auto px-6 text-gray-600 md:px-12 xl:px-6 container-post rounded-xl '>
 			<div className='grid gap-12 md:grid-cols-2 border-post '>
 				{post.map((postId) => {
-					console.log(postId);
 					return (
 						<div className='group space-y-4 border-user-post'>
 							<img

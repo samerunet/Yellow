@@ -1,12 +1,41 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
-export default function Posticon({setShowIcon, setIcon}) {
+export default function Posticon({setShowIcon, setIcon, user, setPost, API }) {
+    const navigate = useNavigate();
+    const [title, setTitle] = useState("")
+    const [image, setImage] = useState("")
+    const [description, setDescription] = useState("")
 
+    const handleTitle = (event) => {
+        setTitle(event.target.value)
+    }
 
+    const handleImage = (event) => {
+        setImage(event.target.value)
+    }
+
+    const handleDescription = (event) => {
+        setDescription(event.target.value)
+    }
+
+    const newPost = (title, image, description) => { 
+        axios.post(`${API}/post`, {
+            author: user.id,
+            title: title,
+            image: image,
+            description: description
+        })
+        .then((response) => {
+            navigate("/")
+        })
+
+    }
+    
 const toggleOff = () => {
-
     setIcon(false)
-
 }    
 	return( 
         <dh-component  >
@@ -64,7 +93,7 @@ const toggleOff = () => {
                             <input id="cvc" class="mb-8 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="MM/YY" />
                         </div> */}
                         <div class="flex items-center justify-start w-full">
-                            <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
+                            <button onClick={()=>(newPost())} class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
                             <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" onClick={toggleOff} >Cancel</button>
                         </div>
                         <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" onclick="modalHandler()" aria-label="close modal" role="button">

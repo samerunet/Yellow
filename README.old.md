@@ -6,7 +6,7 @@ Our Yellow themed social media app is separate from any other because it is cent
 
 
 # Logic behind code
-Login 
+Login.js
 - imports - react, useState, Link - keeps you on the same page , useNavigate - function that has a link and we use it to link to the home page 
 link keeps you on the same page
 var for API is declared here as well 
@@ -19,6 +19,9 @@ if - it matches THEN - setUser to the value from the backend
 - Object.keys - checks for the keys of the users in the backend (array.length) - passing response.data - what is sent back as a repsonse - and compares how many keys it has (username, password) - IF repsonse equals = 0 it is invalid BUT if there are Key1 & Key2 THEN we setPermission to TRUE & we Navigate to home 
 setPermission - is declared in the appgateway to allow gateway to show the main content AFTER userauth is VALID & changes the state to true 
 navigate - "/" (home) - navigate is a default router function that we imported to navigate to the route 
+
+AppGateway.js
+- 
 
 
 

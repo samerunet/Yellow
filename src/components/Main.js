@@ -42,7 +42,7 @@ export default function Main({
 						<main class=''>
 							<Feed post={post} user={user} />
 						</main>
-						<Right user={user} />
+						<Right user={user} API={API} />
 					</div>
 				</div>
 			</div>

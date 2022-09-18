@@ -9,6 +9,7 @@ export default function Main({
 	setPost,
 	setComment,
 	setUsers,
+	comments,
 	users,
 	post,
 	user,
@@ -40,7 +41,7 @@ export default function Main({
 					<div class='flex h-full'>
 						<Left users={users} />
 						<main class=''>
-							<Feed post={post} user={user} />
+							<Feed post={post} user={user} users={users} comments={comments} />
 						</main>
 						<Right user={user} API={API} />
 					</div>

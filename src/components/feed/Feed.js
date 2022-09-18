@@ -1,15 +1,38 @@
 import React from "react";
 
-export default function Feed({ post, user }) {
-	console.log(user);
+export default function Feed({ post, users, comments }) {
+	console.log("users ", users);
+	console.log("post ", post);
+	console.log("comments ", comments);
+	// to get the users map through the users and map through the post
+	// create a new array to push the users username to the post
 
-	// map through users and postId and set the owner 
-	
-
+	// array of object that will combine
+	// post with all data then add the user as a key , then add another object depending on how many comments
 	return (
 		<div className='container m-auto px-6 text-gray-600 md:px-12 xl:px-6 container-post rounded-xl '>
 			<div className='grid gap-12 md:grid-cols-2 border-post '>
-				{post.map((postId) => {
+				{post.map((postItem, i) => {
+					const postId = i + 1;
+					//user
+					const authorId = postItem.author;
+					let user = users.filter((user) => {
+						if (user.id === authorId) {
+							return true;
+						} else {
+							return false;
+						}
+					});
+					user = user[0];
+
+					const allPostComments = comments.filter((comment) => {
+						if (comment.post === postId) {
+							return true;
+						} else {
+							return false;
+						}
+					});
+
 					return (
 						<div className='group space-y-4 border-user-post'>
 							<img
@@ -18,7 +41,7 @@ export default function Feed({ post, user }) {
 								alt='Neil image'
 							/>
 							<p className='text-sm font-medium text-gray-900 truncate dark:text-black user-name'>
-								username
+								{user.username}
 							</p>
 							<svg
 								className='w-6 h-6 edit-icon'
@@ -45,9 +68,9 @@ export default function Feed({ post, user }) {
 							<div className='space-y-2'>
 								<div className='space-y-4'>
 									<h4 className='text-2xl font-semibold text-gray-700'>
-										{postId.title}
+										{postItem.title}
 									</h4>
-									<p className='text-gray-600'>{postId.description}</p>
+									<p className='text-gray-600'>{postItem.description}</p>
 								</div>
 							</div>
 							<svg
@@ -79,7 +102,16 @@ export default function Feed({ post, user }) {
 									d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'
 								></path>
 							</svg>
-							<p> {postId.likes}</p>
+							<p> {postItem.likes}</p>
+							{allPostComments.length ? (
+								<div>
+									{allPostComments.map((comment) => (
+										<p>{comment.comment_body}</p>
+									))}
+								</div>
+							) : (
+								<div>No comments currently...</div>
+							)}
 						</div>
 					);
 				})}

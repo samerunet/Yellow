@@ -6,6 +6,7 @@ import { useState } from "react";
 import Main from "./components/Main.js";
 import Nav from "./components/navbar/Navbar.js";
 import New from "./components/sidebarRight/Posticon";
+import Posticon from "./components/sidebarRight/Posticon";
 
 const ProtectedRoute = ({ permission, children }) => {
 	if (!permission) {
@@ -18,7 +19,7 @@ export default function AppGateway() {
 	const [users, setUsers] = useState([]);
 	const [user, setUser] = useState([]);
 	const [post, setPost] = useState([]);
-	const [comment, setComment] = useState([]);
+	const [comments, setComment] = useState([]);
 	const [permission, setPermission] = useState(false);
 	const API = "https://secure-forest-62515.herokuapp.com/api";
 
@@ -47,6 +48,7 @@ export default function AppGateway() {
 								post={post}
 								user={user}
 								API={API}
+								comments={comments}
 							/>
 						</ProtectedRoute>
 					}
@@ -67,6 +69,7 @@ export default function AppGateway() {
 						</div>
 					}
 				/>
+				<Route path='/newpost' element={<Posticon user={user} API={API} />} />
 			</Routes>
 		</BrowserRouter>
 	);

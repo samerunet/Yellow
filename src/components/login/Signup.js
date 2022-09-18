@@ -147,7 +147,7 @@ export default function Signup({ setUser, setPermission }) {
 							<div className='relative'>
 								<input
 									name='password'
-									type={` ${vision ? "text" : "password"}`}
+									type={vision ? "text" : "password"}
 									className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
 									placeholder='Confirm password'
 									onChange={handlePassword2}

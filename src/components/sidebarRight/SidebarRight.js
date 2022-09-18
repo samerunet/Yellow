@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import Posticon from "./Posticon";
+import { useNavigate } from "react-router-dom";
 
 export default function SidebarRight({ user }) {
-	const [icon, setIcon] = useState(false);
+	const navigate = useNavigate();
+	// const [icon, setIcon] = useState(false);
 
-	const toggleOn = () => {
-		setIcon(true);
-	};
+	// const toggleOn = () => {
+	// 	setIcon(true);
+	// };
 
 	return (
 		<nav class='flex w-72 h-full '>
@@ -75,11 +76,11 @@ export default function SidebarRight({ user }) {
 								</svg>
 								<h5
 									className='dark:hover:text-yellow-300 cursor-copy'
-									onClick={toggleOn}
+									onClick={() => navigate("/newpost")}
 								>
 									Post
 								</h5>
-								{icon ? <Posticon setIcon={setIcon} /> : null}
+								{/* {icon ? <Posticon setIcon={setIcon} /> : null} */}
 							</div>
 							<div className='flex mt-4 space-x-3 md:mt-6'>
 								<svg

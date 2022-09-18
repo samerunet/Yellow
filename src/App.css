@@ -3,70 +3,68 @@
 @tailwind utilities;
 
 .bg-main {
-    background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
-
+	background: linear-gradient(
+		90deg,
+		rgba(254, 242, 78, 1) 16%,
+		rgba(253, 253, 150, 1) 31%,
+		rgba(254, 254, 190, 1) 66%,
+		rgba(254, 242, 78, 1) 83%
+	);
 }
 .bg-dark-main {
-    background: #282b38
+	background: #282b38;
 }
 
-    .container-post {
-    margin-top: 2em;
+.container-post {
+	margin-top: 2em;
 
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-        
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .border-post {
-     
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 65vw;
-    height: 100vh;
-    margin-top: 1%;
-    flex-wrap: wrap;
-    overflow-x: auto;
-
-    
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 65vw;
+	height: 100vh;
+	margin-top: 1%;
+	flex-wrap: wrap;
+	overflow-x: auto;
 }
 
 .border-user-post {
-    
-    background-color: aliceblue;
-    border-radius: 2%;
-    width: 80vw;
-    height:65vh
-    
+	background-color: aliceblue;
+	border-radius: 2%;
+	width: 80vw;
+	height: 65vh;
 }
 
 /* Top of post */
-.prof-pic, .user-name, .edit-icon {
-    display: inline;
+.prof-pic,
+.user-name,
+.edit-icon {
+	display: inline;
 }
 .user-name {
-    margin-left: .2em;
+	margin-left: 0.2em;
 }
 .edit-icon {
-    float: right;
+	float: right;
 }
 
 /* Bottom of post  */
-.comment-btn, .like-btn {
-    display: inline;
-    float: right;
+.comment-btn,
+.like-btn {
+	display: inline;
+	float: right;
 }
-
-
 
 /* Right Side Bar  */
 .right-bar {
-    float: right;
-    
+	float: right;
 }
 
 /* .smallicon{
@@ -75,21 +73,32 @@
     background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
 } */
 
-.logo{
-    margin-left: 0;
-    margin-right: 5em;
+.logo {
+	margin-left: 0;
+	margin-right: 5em;
 }
 
-navcontainer{
-    width: 100vw;
+navcontainer {
+	width: 100vw;
 }
 
-.thenav{
-    background: linear-gradient(90deg, rgba(254,242,78,1) 16%, rgba(253,253,150,1) 31%, rgba(254,254,190,1) 66%, rgba(254,242,78,1) 83%);
+.thenav {
+	background: linear-gradient(
+		90deg,
+		rgba(254, 242, 78, 1) 16%,
+		rgba(253, 253, 150, 1) 31%,
+		rgba(254, 254, 190, 1) 66%,
+		rgba(254, 242, 78, 1) 83%
+	);
 }
 
-.friends{
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    color: black;
+.friends {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: black;
+}
 
+.object {
+	margin-left: 30%;
+	width: 220px;
+	height: 250px;
 }

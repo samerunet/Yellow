@@ -1,127 +1,213 @@
 import React from "react";
 import { useState } from "react";
+import Newuser from "./Signup.js";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+export default function Signup({ setUser, setPermission }) {
+	// navigate will navigate to the route assigned in argument
+	const navigate = useNavigate();
+	// renaming for easier access to the function
 
+	const API = "https://secure-forest-62515.herokuapp.com/api";
+	// var for api declared so it can be changed easily for the whole app
 
-export default function Newuser(props){
+	const [username, setUsername] = useState(" ");
+	const [password, setPassword] = useState(" ");
+	const [password2, setPassword2] = useState(" ");
 
+	const [vision, setVision] = useState(false);
 
-    let emptyUser = {username: '', email: '', password1: '', password2: ''}
-const [user, setUser] = useState(emptyUser)
+	const passwordToggle = () => {
+		vision ? setVision(false) : setVision(true);
+	};
 
+	// this function will store the value to the state
+	const handleUsername = (event) => {
+		setUsername(event.target.value);
+	};
 
-const handleNewUser = (event) => {
-    setUser({...user, [event.target.name]: event.target.value})
+	const handlePassword = (event) => {
+		setPassword(event.target.value);
+	};
+	const handlePassword2 = (event) => {
+		setPassword2(event.target.value);
+	};
+
+	// this function is to Signin
+	const handleSignup = (username, password) => {
+		// axios post request to send signin credentials to the backend
+		if (password === password2) {
+			axios
+				.post(`${API}/users`, {
+					username: username,
+					password: password,
+					//  value in backend : value from react app
+				})
+				.then((response) => {
+					navigate("/login");
+				});
+		} else {
+			alert("Passwords does not match");
+		}
+	};
+
+	return (
+		<div>
+			<section className='bg-yellow-300  relative flex flex-wrap lg:h-screen lg:items-center'>
+				<div className='w-full px-4 py-12 lg:w-1/2 sm:px-6 lg:px-8 sm:py-16 lg:py-24'>
+					<div className='max-w-lg mx-auto text-center'>
+						<img className='object' src='images/logo.png' />
+						<h3 className='text-xl font-bold sm:text-3xl'>
+							Get started today!
+						</h3>
+
+						<p className='mt-4 text-gray-500'>Are you Yello?</p>
+					</div>
+					<form
+						onSubmit={(event) => {
+							event.preventDefault();
+							handleSignup(username, password);
+						}}
+						className='max-w-md mx-auto mt-8 mb-0 space-y-4'
+					>
+						<div>
+							<label htmlFor='text' className='sr-only'>
+								Email
+							</label>
+
+							<div className='relative'>
+								<input
+									name='username'
+									type='text'
+									className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
+									placeholder='Enter username'
+									onChange={handleUsername}
+								/>
+
+								<span className='absolute inset-y-0 inline-flex items-center right-4'>
+									<svg
+										xmlns='http://www.w3.org/2000/svg'
+										className='w-5 h-5 text-gray-400'
+										fill='none'
+										viewBox='0 0 24 24'
+										stroke='currentColor'
+									>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207'
+										/>
+									</svg>
+								</span>
+							</div>
+						</div>
+
+						<div>
+							<label htmlFor='password' className='sr-only'>
+								Password
+							</label>
+							<div className='relative'>
+								<input
+									name='password'
+									type='password'
+									className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
+									placeholder='Enter password'
+									onChange={handlePassword}
+								/>
+
+								<span className='absolute inset-y-0 inline-flex items-center right-4'>
+									<svg
+										xmlns='http://www.w3.org/2000/svg'
+										className='w-5 h-5 text-gray-400'
+										fill='none'
+										viewBox='0 0 24 24'
+										stroke='currentColor'
+									>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'
+										/>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z'
+										/>
+									</svg>
+								</span>
+							</div>
+						</div>
+						<div>
+							<label htmlFor='password' className='sr-only'>
+								Password
+							</label>
+							<div className='relative'>
+								<input
+									name='password'
+									type={` ${vision ? "password" : "text"}`}
+									className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
+									placeholder='Confirm password'
+									onChange={handlePassword2}
+								/>
+
+								<span
+									onClick={() => passwordToggle()}
+									className=' cursor-pointer absolute inset-y-0 inline-flex items-center right-4'
+								>
+									<svg
+										xmlns='http://www.w3.org/2000/svg'
+										className='w-5 h-5 text-gray-400'
+										fill='none'
+										viewBox='0 0 24 24'
+										stroke='currentColor'
+									>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'
+										/>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z'
+										/>
+									</svg>
+								</span>
+							</div>
+						</div>
+
+						<div className='flex items-center justify-between'>
+							<p className='text-sm text-gray-500'>
+								<Link type='submit' className='underline' to={`/login`}>
+									Login
+								</Link>
+							</p>
+
+							<div className='flex items-center justify-between'>
+								<button
+									type='submit'
+									className='bg-lime-500 inline-block px-5 py-3 ml-3 text-sm font-lg  rounded-lg'
+								>
+									Sign up
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<div className='relative w-full h-64 sm:h-96 lg:w-1/2 lg:h-full'>
+					<img
+						className='absolute inset-0 object-cover w-full h-full'
+						src='https://img.freepik.com/free-photo/confident-handsome-man-winking-showing-okay-sign-approval-like-something-good-standing-yello_1258-65908.jpg?w=1380&t=st=1663097929~exp=1663098529~hmac=3976309260f2b9f17dadd1e36dbfc306ea5d045e4774b2a87ea454f3e5f28ae2'
+						alt=''
+					/>
+				</div>
+			</section>
+		</div>
+	);
 }
-
-const handleSignUp = (event) => {
-    event.preventDefault()
-    props.handleCreateNewUser(user)
-    setUser(emptyUser)
-
-}
-
-
-
-
-
-
-    return(
-        <>
-            <dh-component>
-            
-            <div className="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
-                <div role="alert" className="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-                    <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                        <div className="w-full flex justify-start text-gray-600 mb-3">
-                            <svg  xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
-                                <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
-                            </svg>
-                        </div>
-                        <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Enter Billing Details</h1>
-                        <label for="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Owner Name</label>
-                        <input id="name" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="James" />
-                        <label for="email2" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Card Number</label>
-                        <div className="relative mb-5 mt-2">
-                            <div className="absolute text-gray-600 flex items-center px-4 border-r h-full">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-credit-card" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <rect x="3" y="5" width="18" height="14" rx="3" />
-                                    <line x1="3" y1="10" x2="21" y2="10" />
-                                    <line x1="7" y1="15" x2="7.01" y2="15" />
-                                    <line x1="11" y1="15" x2="13" y2="15" />
-                                </svg>
-                            </div>
-                            <input id="email2" className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-16 text-sm border-gray-300 rounded border" placeholder="XXXX - XXXX - XXXX - XXXX" />
-                        </div>
-                        <label for="expiry" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Expiry Date</label>
-                        <div className="relative mb-5 mt-2">
-                            <div className="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <rect x="4" y="5" width="16" height="16" rx="2" />
-                                    <line x1="16" y1="3" x2="16" y2="7" />
-                                    <line x1="8" y1="3" x2="8" y2="7" />
-                                    <line x1="4" y1="11" x2="20" y2="11" />
-                                    <rect x="8" y="15" width="2" height="2" />
-                                </svg>
-                            </div>
-                            <input id="expiry" className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="MM/YY" />
-                        </div>
-                        <label for="cvc" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">CVC</label>
-                        <div className="relative mb-5 mt-2">
-                            <div className="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-info-circle" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z"></path>
-                                    <circle cx="12" cy="12" r="9"></circle>
-                                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                                    <polyline points="11 12 12 12 12 16 13 16"></polyline>
-                                </svg>
-                            </div>
-                            <input id="cvc" className="mb-8 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="MM/YY" />
-                        </div>
-                        <div className="flex items-center justify-start w-full">
-                            <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
-                            <button className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm">Cancel</button>
-                        </div>
-                        <button className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" onclick="modalHandler()" aria-label="close modal" role="button">
-                            <svg  xmlns="http://www.w3.org/2000/svg"  className="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <line x1="18" y1="6" x2="6" y2="18" />
-                                <line x1="6" y1="6" x2="18" y2="18" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div className="w-full flex justify-center py-12" id="button">
-                <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm" onclick="modalHandler(true)">Open Modal</button>
-            </div>     
-    </dh-component>
-        </>
-    )
-}
-
-
-
-/* <form classNameName="sign-up" onSubmit={handleSignUp}>
-        
-<input type="text" name="username" value={user.username} onChange={handleNewUser}/>
-<br />
-<br />
-
-<input type="text" name="email" value={user.email} onChange={handleNewUser}/>
-<br />
-<br />
-
-<input type="number" name="password1" value={user.password1} onChange={handleNewUser}/>
-<br />
-<br />
-
-<input type="text" name="password2" value={user.password2} onChange={handleNewUser}/>
-<br />
-<br />
-<input classNameName='submit' type="submit" value='Sign Up'/>
-
-</form> */

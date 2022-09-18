@@ -5,6 +5,18 @@ import Posticon from "./Posticon";
 
 
 export default function SidebarRight({ user }) {
+
+
+const [icon, setIcon] = useState(false)
+
+
+const toggleOn = () => {
+	setIcon(true)
+}
+
+
+
+
 	return (
 		<div className='w-64 max-h-full h-screen bg-white rounded-lg border border-gray-200 shadow-md dark:bg-white right-bar'>
 			<div className='flex justify-end px-4 pt-4'></div>
@@ -45,6 +57,7 @@ export default function SidebarRight({ user }) {
 						/>
 					</svg>
 					<h5 className='dark:hover:text-yellow-300 cursor-pointer'>Profile</h5>
+					
 				</div>
 				<div className='flex mt-4 space-x-3 md:mt-6'>
 					<svg
@@ -61,7 +74,9 @@ export default function SidebarRight({ user }) {
 							d='M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z'
 						/>
 					</svg>
-					<h5 className='dark:hover:text-yellow-300 cursor-copy'>Post</h5>
+					<h5 className='dark:hover:text-yellow-300 cursor-copy' onClick={toggleOn}>Post</h5>
+					{icon ? <Posticon setIcon={setIcon} /> : null }
+				
 				</div>
 				<div className='flex mt-4 space-x-3 md:mt-6'>
 					<svg

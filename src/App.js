@@ -1,11 +1,7 @@
 import "./App.css";
 import AppGateway from "./AppGateway.js";
 
-
-
 function App() {
-	
-
 	// // FETCH - USERS
 	// const getUsers = () => {
 	// 	axios.get(`${API}/users`).then((response) =>
@@ -76,9 +72,7 @@ function App() {
 	// 	getComments();
 	// }, []);
 
-	return (
-		<AppGateway />
-	);
+	return <AppGateway />;
 }
 
 export default App;

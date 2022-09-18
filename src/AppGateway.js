@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./components/login/Login.js";
+import Signup from "./components/login/Signup.js";
 import { useState } from "react";
 import Main from "./components/Main.js";
 import Nav from "./components/navbar/Navbar.js";
@@ -30,6 +31,10 @@ export default function AppGateway() {
 					path='/login'
 					element={<Login setUser={setUser} setPermission={setPermission} />}
 				/>
+				<Route
+					path='/signup'
+					element={<Signup setPermission={setPermission} />}
+				/>
 
 				<Route
 					path='/'
@@ -47,19 +52,10 @@ export default function AppGateway() {
 					}
 				/>
 
-				<Route path='/addpost' element={<New />}/>
-					
-					
-					
-
-				
+				<Route path='/addpost' element={<New />} />
 
 				<Route path='/contact' element={<div>contact page</div>} />
 			</Routes>
 		</BrowserRouter>
 	);
 }
-
-
-
-

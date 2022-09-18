@@ -1,8 +1,30 @@
-# Yellow
+# Are you Yello? 
 
-# AMie is here
+"The first words that consistently come to mind when people see the color yellow are “sunshine”, “warmth”, “cheer”, “happiness” and sometimes even “playfulness."
 
-#mauricio is here 
+Our Yellow themed social media app is separate from any other because it is centered around the sensation of feeling happy and spreading that happiness througout the platform. The purpose of this social app is to share happiness. Instagram shares the bests parts - Yello shares the happiness which is more real than any other post. 
+
+
+
+Login 
+
+imports - react, useState, Link - keeps you on the same page , useNavigate - function that has a link and we use it to link to the home page 
+link keeps you on the same page
+var for API is declared here as well 
+
+states - username, password 
+
+handles for username and password to store the value to the state 
+
+(username, password) gets passed in - assigning users inpit to the values 
+axios - .put request to send login credentials to the backend for verification
+catch error - to check if password is invalid - alert - by default the backend will send an empty object to indicate that the password is invalid 
+if - it matches THEN - setUser to the value from the backend 
+
+Object.keys - checks for the keys of the users in the backend (array.length) - passing response.data - what is sent back as a repsonse - and compares how many keys it has (username, password) - IF repsonse equals = 0 it is invalid BUT if there are Key1 & Key2 THEN we setPermission to TRUE & we Navigate to home 
+setPermission - is declared in the appgateway to allow gateway to show the main content AFTER userauth is VALID & changes the state to true 
+navigate - "/" (home) - navigate is a default router function that we imported to navigate to the route 
+
 
 
 
@@ -33,4 +55,8 @@
 'https://memeandchill.com/wp-content/uploads/2022/02/17.gif'
 
 'https://1fid.com/wp-content/uploads/2022/07/funny-profile-pic-13-1024x1024.jpg'
+
+
+
+
 

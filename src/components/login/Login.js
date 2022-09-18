@@ -2,22 +2,19 @@ import React from "react";
 import { useState } from "react";
 import Newuser from "./Signup.js";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-export default function Login({ setUser,setPermission }) {
-	// will validate the user and get user id
-	// map through the users and get the specific user data
-	//
-
+import { Link, useNavigate } from "react-router-dom";
+export default function Login({ setUser, setPermission }) {
+	// navigate will navigate to the route assigned in argument
 	const navigate = useNavigate();
+	// renaming for easier access to the function
+
 	const API = "https://secure-forest-62515.herokuapp.com/api";
+	// var for api declared so it can be changed easily for the whole app
+
 	const [username, setUsername] = useState(" ");
 	const [password, setPassword] = useState(" ");
-	const [signUp, setShowSignUp] = useState(false);
 
-	const showSignUp = () => {
-		setShowSignUp(true);
-	};
-
+	// this function will store the value to the state
 	const handleUsername = (event) => {
 		setUsername(event.target.value);
 	};
@@ -26,26 +23,35 @@ export default function Login({ setUser,setPermission }) {
 		setPassword(event.target.value);
 	};
 
+	// this function is to login
 	const handleLogin = (username, password) => {
+		// axios put request to send login credentials to the backend for verification
 		axios
 			.put(`${API}/users/login`, {
 				username: username,
 				password: password,
+				//  value in backend : value from react app
 			})
+			// catch error if the password is invalid
 			.catch((error) => {
 				if (error) {
 					alert("Email or password does not match records");
 				}
 			})
 			.then((response) => {
-                setUser(response.data);
+				setUser(response.data); // if password is valid setUser state to the value send from the backend
 				console.log(response.data);
 				if (Object.keys(response.data).length === 0) {
-					console.log("something went wrong");
-                } else {
-                    setPermission(true)
+					// by default the backend will send an empty object to indicate that the password is invalid or username is invalid
+					// by comparing the return key value with the backend logic
+					// the backend sends empty object with key value 0 or 2
+					alert("Your password is not valid");
+				} else {
+					setPermission(true);
+					// we have declared setPermission in the AppGateway to allow gateway to show the main content after the user auth was completed and change the state to true
 					navigate("/");
-					// pageToggle();
+					// navigate is a router function that will navigate to the route
+					// declared as an argument
 				}
 			});
 	};
@@ -55,14 +61,12 @@ export default function Login({ setUser,setPermission }) {
 			<section className='bg-yellow-300  relative flex flex-wrap lg:h-screen lg:items-center'>
 				<div className='w-full px-4 py-12 lg:w-1/2 sm:px-6 lg:px-8 sm:py-16 lg:py-24'>
 					<div className='max-w-lg mx-auto text-center'>
-						<h1 className='text-2xl font-bold sm:text-3xl'>
+						<img className='object' src='images/logo.png' />
+						<h3 className='text-xl font-bold sm:text-3xl'>
 							Get started today!
-						</h1>
+						</h3>
 
-						<p className='mt-4 text-gray-500'>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero
-							nulla eaque error neque ipsa culpa autem, at itaque nostrum!
-						</p>
+						<p className='mt-4 text-gray-500'>Are you Yello?</p>
 					</div>
 					<form
 						onSubmit={(event) => {
@@ -143,20 +147,23 @@ export default function Login({ setUser,setPermission }) {
 						</div>
 
 						<div className='flex items-center justify-between'>
-							<button
-								type='submit'
-								className='bg-lime-500 inline-block px-5 py-3 ml-3 text-sm font-lg  rounded-lg'
-							>
-								Sign in
-							</button>
+							<p className='text-sm text-gray-500'>
+								No account?
+								<Link type='submit' className='underline' to={`/signup`}>
+									Sign up
+								</Link>
+							</p>
+
+							<div className='flex items-center justify-between'>
+								<button
+									type='submit'
+									className='bg-lime-500 inline-block px-5 py-3 ml-3 text-sm font-lg  rounded-lg'
+								>
+									Sign in
+								</button>
+							</div>
 						</div>
 					</form>
-					<div>
-						<button className='underline' onClick={showSignUp}>
-							Sign up
-							{signUp ? <Newuser /> : null}
-						</button>
-					</div>
 				</div>
 
 				<div className='relative w-full h-64 sm:h-96 lg:w-1/2 lg:h-full'>

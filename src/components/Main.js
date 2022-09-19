@@ -41,7 +41,7 @@ export default function Main({
 					<div class='flex h-full'>
 						<Left users={users} />
 						<main class=''>
-							<Feed post={post} user={user} users={users} comments={comments} />
+							<Feed post={post} user={user} users={users} comments={comments} API={API} />
 						</main>
 						<Right user={user} API={API} />
 					</div>

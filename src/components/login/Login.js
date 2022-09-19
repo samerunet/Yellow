@@ -23,6 +23,11 @@ export default function Login({ setUser, setPermission }) {
 		setPassword(event.target.value);
 	};
 
+	const [vision, setVision] = useState(false);
+
+	const passwordToggle = () => {
+		vision ? setVision(false) : setVision(true);
+	};
 	// this function is to login
 	const handleLogin = (username, password) => {
 		// axios put request to send login credentials to the backend for verification
@@ -89,7 +94,7 @@ export default function Login({ setUser, setPermission }) {
 									onChange={handleUsername}
 								/>
 
-								<span className='absolute inset-y-0 inline-flex items-center right-4'>
+								<span className=' absolute inset-y-0 inline-flex items-center right-4'>
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
 										className='w-5 h-5 text-gray-400'
@@ -115,13 +120,16 @@ export default function Login({ setUser, setPermission }) {
 							<div className='relative'>
 								<input
 									name='password'
-									type='password'
+									type={vision ? "text" : "password"}
 									className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
 									placeholder='Enter password'
 									onChange={handlePassword}
 								/>
 
-								<span className='absolute inset-y-0 inline-flex items-center right-4'>
+								<span
+									className=' cursor-pointer absolute inset-y-0 inline-flex items-center right-4'
+									onClick={() => passwordToggle()}
+								>
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
 										className='w-5 h-5 text-gray-400'
@@ -177,6 +185,3 @@ export default function Login({ setUser, setPermission }) {
 		</div>
 	);
 }
-
-
-

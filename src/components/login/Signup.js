@@ -110,13 +110,16 @@ export default function Signup({ setUser, setPermission }) {
 							<div className='relative'>
 								<input
 									name='password'
-									type='password'
+									type={vision ? "text" : "password"}
 									className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
 									placeholder='Enter password'
 									onChange={handlePassword}
 								/>
 
-								<span className='absolute inset-y-0 inline-flex items-center right-4'>
+								<span
+									className='cursor-pointer absolute inset-y-0 inline-flex items-center right-4'
+									onClick={() => passwordToggle()}
+								>
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
 										className='w-5 h-5 text-gray-400'

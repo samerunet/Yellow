@@ -1,6 +1,7 @@
 import React from "react";
+import Comment from "./Comment.js";
 
-export default function Feed({ post, users, comments }) {
+export default function Feed({ post, API,  users, comments }) {
 	console.log("users ", users);
 	console.log("post ", post);
 	console.log("comments ", comments);
@@ -130,6 +131,7 @@ export default function Feed({ post, users, comments }) {
 							) : (
 								<div>No comments currently...</div>
 							)}
+							<Comment API={API} user={user} post={postItem} comments={comments} />
 						</div>
 					);
 				})}

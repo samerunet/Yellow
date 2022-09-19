@@ -12,8 +12,8 @@ export default function Feed({ post, users, comments }) {
 	return (
 		<div className='container m-auto px-6 text-gray-600 md:px-12 xl:px-6 container-post rounded-xl '>
 			<div className='grid gap-12 md:grid-cols-2 border-post '>
-				{post.map((postItem, i) => {
-					const postId = i + 1;
+				{post.map((postItem) => {
+					const postId = postItem.id;
 					//user
 					const authorId = postItem.author;
 					let user = users.filter((user) => {
@@ -35,7 +35,7 @@ export default function Feed({ post, users, comments }) {
 
 					return (
 						<div className='group space-y-4 border-user-post'>
-							<img
+							<image
 								className='w-8 h-8 rounded-full prof-pic'
 								src='https://i.pinimg.com/474x/ee/60/0b/ee600b5178e4f1648fd1e8623f049611.jpg'
 								alt='Neil image'
@@ -105,9 +105,27 @@ export default function Feed({ post, users, comments }) {
 							<p> {postItem.likes}</p>
 							{allPostComments.length ? (
 								<div>
-									{allPostComments.map((comment) => (
-										<p>{comment.comment_body}</p>
-									))}
+									{allPostComments.map((comment) => {
+										console.log(comment.commenter_name);
+										const authorId = comment.commenter_name;
+										let commenter = users.filter((user) => {
+											if (user.id === authorId) {
+												return true;
+											} else {
+												return false;
+											}
+										});
+
+										console.log(commenter);
+
+										return (
+											<p>
+												{commenter[0].username}
+												<br />
+												{comment.comment_body}
+											</p>
+										);
+									})}
 								</div>
 							) : (
 								<div>No comments currently...</div>

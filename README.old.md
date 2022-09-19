@@ -23,7 +23,20 @@ navigate - "/" (home) - navigate is a default router function that we imported t
 AppGateway.js
 - 
 
+Feed.js
+- We have to map through user, post, and comments 
+- FIRST we map through user
+- const author = postId.author 
+- filter - returns true or false, if this
+- const user = user.filter(user)
+- if user.id = author.id THEN we return TRUE 
+- else return FALSE 
+- (because post has author id)
 
+- map throug post to get the title, description and image
+
+- COMMENTS 
+- const comments = 
 
 
 # funny images to randomize for profile pics

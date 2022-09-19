@@ -67,7 +67,7 @@ export default function Feed({ post, API,  users, comments, setPost, username, s
 	})}
 
 	const EditForm = ({user, postItem, handleEditTitle, handleEditDescription, handleEditImage}) => { if(username.username === user.username ) {
-		debugger
+		{debugger}
 		return <>
 			
 				<form onSubmit={()=>{ editPost(handleEditTitle, handleEditDescription, handleEditImage, postItem)}} >

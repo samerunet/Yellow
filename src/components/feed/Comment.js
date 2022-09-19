@@ -27,7 +27,7 @@ const newComment = () => {
  
    
     axios.post(`${API}/comments`, obj). then((response) => {
-        navigate("/contacts")
+        navigate("/")
     })
 
 

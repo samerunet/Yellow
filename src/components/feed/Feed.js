@@ -1,7 +1,9 @@
 import React from "react";
 import Comment from "./Comment.js";
+import axios from "axios";
 
-export default function Feed({ post, API,  users, comments }) {
+
+export default function Feed({ post, API,  users, comments, setPost, username, setComment }) {
 	console.log("users ", users);
 	console.log("post ", post);
 	console.log("comments ", comments);
@@ -10,6 +12,49 @@ export default function Feed({ post, API,  users, comments }) {
 
 	// array of object that will combine
 	// post with all data then add the user as a key , then add another object depending on how many comments
+	
+	const DeleteButton = ({user, postItem}) => { if(username.username === user.username ) {
+		return <>
+			<button onClick={()=>{deletePost(postItem)}} value={postItem.id} > Delete</button> 
+			</>
+			
+	} else {
+		return <></>
+	}}
+
+	const deletePost = (deletedPost) => {
+		axios.delete(`${API}/post/` + deletedPost.id)
+		.then((response)=>{
+			setPost(post.filter(post => post.id !== deletedPost.id))
+
+		})
+	}
+	
+	const handleDelete = (deletedComment) => {
+		axios
+			.delete(`${API}/comments/` + deletedComment.id )
+			.then((response) => {
+				// just deleting comment with the same if as done with the filter 
+				setComment(comments.filter(comments => comments.id !== deletedComment.id))          
+			})
+	}	
+	// logic here is wrong 
+	const Deletecomment = ({comment, user}) => {
+		if (comment.id === user.id) {
+			return <>
+				<button className="bg-lime-500 inline-block px-5 py-3 ml-3 text-sm font-lg  rounded-lg" onClick={()=>{handleDelete(comment)}} value={comment.id}>
+				delete	
+				</button> 
+			</>
+		}else {
+			return <>
+			
+			</>
+		}
+	}
+	
+			
+
 	return (
 		<div className='container m-auto px-6 text-gray-600 md:px-12 xl:px-6 container-post rounded-xl '>
 			<div className='grid gap-12 md:grid-cols-2 border-post '>
@@ -36,6 +81,8 @@ export default function Feed({ post, API,  users, comments }) {
 
 					return (
 						<div className='group space-y-4 border-user-post'>
+							
+							< DeleteButton user={user} postItem={postItem}/>
 							<image
 								className='w-8 h-8 rounded-full prof-pic'
 								src='https://i.pinimg.com/474x/ee/60/0b/ee600b5178e4f1648fd1e8623f049611.jpg'
@@ -124,6 +171,8 @@ export default function Feed({ post, API,  users, comments }) {
 												{commenter[0].username}
 												<br />
 												{comment.comment_body}
+
+												<Deletecomment comment={comment} user={user}/>
 											</p>
 										);
 									})}

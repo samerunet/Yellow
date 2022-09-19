@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Posticon({ setShowIcon, setIcon, user, setPost, API }) {
+export default function Posticon({ setShowIcon, setIcon, user, setPost, API, post }) {
 	const navigate = useNavigate();
 	const [title, setTitle] = useState("");
 	const [image, setImage] = useState("");
@@ -34,6 +34,13 @@ export default function Posticon({ setShowIcon, setIcon, user, setPost, API }) {
 			navigate("/");
 		});
 	};
+
+	const deletePost = (deletedPost) => {
+		axios.delete(`${API}/post/` + deletedPost.id)
+		.then((response)=>{
+			setPost(post.filter(post => post.id !== deletedPost.id))
+		})
+	}
 
 	return (
 		<dh-component>

@@ -65,7 +65,7 @@ export default function AppGateway() {
 						</div>
 					}
 				/>
-				<Route path='/newpost' element={<Posticon user={user} API={API} />} />
+				<Route path='/newpost' element={<Posticon user={user} API={API} setComment={setComment} />} />
 			</Routes>
 		</BrowserRouter>
 	);

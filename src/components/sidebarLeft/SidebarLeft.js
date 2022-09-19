@@ -16,7 +16,7 @@ export default function SidebarLeft({ users }) {
 										data-mdb-ripple='true'
 										data-mdb-ripple-color='dark'
 									>
-										<h3 className='pr-14 mr-20 friends'>Friends</h3>
+										<h3 className='pr-14 mr-20 friends'>Users</h3>
 										<svg
 											class='h-8 w-8 text-red-500 '
 											viewBox='0 0 24 24'

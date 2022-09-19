@@ -5,8 +5,9 @@ import Signup from "./components/login/Signup.js";
 import { useState } from "react";
 import Main from "./components/Main.js";
 import Nav from "./components/navbar/Navbar.js";
-import New from "./components/sidebarRight/Posticon";
-import Posticon from "./components/sidebarRight/Posticon";
+import Contacts from "./components/contacts/Contacts.js";
+import Posticon from "./components/sidebarRight/Posticon.js";
+import Messenger from "./components/messenger/Messenger.js";
 
 const ProtectedRoute = ({ permission, children }) => {
 	if (!permission) {
@@ -54,13 +55,8 @@ export default function AppGateway() {
 					}
 				/>
 
-				<Route path='/addpost' element={<New />} />
-
-				<Route path='/contact' element={<div>contact page</div>} />
-				<Route
-					path='/messenger'
-					element={<div>This part of application is under construction</div>}
-				/>
+				<Route path='/contact' element={<Contacts />} />
+				<Route path='/messenger' element={<Messenger />} />
 				<Route
 					path='/friends'
 					element={
